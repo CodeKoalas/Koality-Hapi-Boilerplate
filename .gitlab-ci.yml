@@ -1,0 +1,9 @@
+image: node:latest
+
+lint:
+  script:
+    - yarn check && yarn run lint
+
+test:
+  script:
+    - yarn run seed && yarn test

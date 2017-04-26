@@ -1,0 +1,76 @@
+{
+  "name": "koality-hapi-boilerplate",
+  "version": "0.0.0",
+  "description": "A Hapi boilerplate that evolves with your node version",
+  "license": "MIT",
+  "main": "app.js",
+  "author": "Donnie West <me@donniewest.com>",
+  "scripts": {
+    "start": "pm2 start --no-daemon dist/index.js --watch",
+    "dev": "pm2 start --no-daemon src/index.js --watch --interpreter ./node_modules/.bin/babel-node",
+    "compile": "babel src -d dist --source-maps",
+    "setup": "yarn install && npm run compile",
+    "setup-compile": "npm run setup",
+    "test": "lab -T node_modules/lab-babel -I 'Reflect,core,_babelPolyfill,regeneratorRuntime,__core-js_shared__,System,asap,Observable'",
+    "lint": "eslint '{src,test}/**/*.js'",
+    "format": "prettier-eslint --write '{src,test}/**/*.js'",
+    "watch": "nodemon --exec 'npm run compile' -w src/"
+  },
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": 6
+          }
+        }
+      ]
+    ],
+    "plugins": [
+      "transform-class-properties",
+      [
+        "transform-runtime",
+        {
+          "polyfill": false,
+          "regenerator": true
+        }
+      ]
+    ]
+  },
+  "eslintConfig": {
+    "extends": "koality",
+    "parser": "babel-eslint"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.23.0",
+    "bcrypt": "^1.0.2",
+    "boom": "^4.3.1",
+    "code": "^4.0.0",
+    "faker": "^4.1.0",
+    "hapi": "^16.1.1",
+    "inert": "^4.2.0",
+    "joi": "^10.4.1",
+    "lab": "^13.0.2",
+    "lout": "^10.0.1",
+    "pm2": "^2.4.5",
+    "prettier-eslint": "^6.1.1",
+    "sinon": "^2.1.0",
+    "umzug": "^1.12.0",
+    "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-register": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-config-koality": "^1.0.0",
+    "eslint-plugin-babel": "^4.1.1",
+    "lab-babel": "^1.1.1",
+    "nodemon": "^1.11.0",
+    "prettier": "^1.2.2"
+  }
+}
