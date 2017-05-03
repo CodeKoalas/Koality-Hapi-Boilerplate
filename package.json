@@ -9,7 +9,7 @@
     "start": "pm2 start --no-daemon dist/index.js --watch",
     "dev": "pm2 start --no-daemon src/index.js --watch --interpreter ./node_modules/.bin/babel-node",
     "compile": "babel src -d dist --source-maps",
-    "setup": "yarn install && npm run compile",
+    "setup": "yarn install --pure-lockfile && npm run compile",
     "setup-compile": "npm run setup",
     "test": "lab -T node_modules/lab-babel -I 'Reflect,core,_babelPolyfill,regeneratorRuntime,__core-js_shared__,System,asap,Observable'",
     "lint": "eslint '{src,test}/**/*.js'",
