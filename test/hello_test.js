@@ -22,7 +22,9 @@ lab.experiment('Hello world module', () => {
   lab.test('GET / should return "Hello world"', done => {
     server.inject(options, res => {
       expect(res.statusCode).to.equal(200);
-      expect(res.payload).to.be.a.string().and.contain(['Hello', 'World']);
+      expect(res.payload)
+        .to.be.a.string()
+        .and.contain(['Hello', 'World']);
       done();
     });
   });
